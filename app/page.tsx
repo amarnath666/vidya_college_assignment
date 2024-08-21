@@ -12,6 +12,7 @@ const Home = () => {
 
     return (
         <>
+        <Header />
             <Banner />
             <div className="flex mt-8 ml-[100px]">
                 <SideCard />

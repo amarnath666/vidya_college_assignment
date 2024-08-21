@@ -6,17 +6,17 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  z-index: 1;
 }
 
 .carousel-inner {
   display: flex;
-  transition: transform 30s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide {
   min-width: 100%;
   box-sizing: border-box;
-  transition: opacity 30s ease-in-out;
 }
 
 .carousel-slide img {
@@ -34,7 +34,7 @@
   border: none;
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 2; 
   border-radius: 50%;
 }
 
@@ -85,6 +85,55 @@
 }
 
 
+/* Input filed */
+.outline-text {
+  text-shadow:
+    1px 1px 0px #000,
+    -1px -1px 0px #000,
+    1px -1px 0px #000,
+    -1px 1px 0px #000;
+}
+
+.text-outline {
+  text-shadow:
+      1px 1px 0px #ffffff, 
+      -1px -1px 0px #ffffff,
+      1px -1px 0px #ffffff,
+      -1px 1px 0px #ffffff;
+}
+
+/* Admin */
+.admin-dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar-wrapper {
+  position: relative;
+  flex-basis: 200px;
+  background-color: #f1f1f1;
+}
+
+.sidebar-wrapper .admin-sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.header-wrapper {
+  flex-grow: 1;
+  background-color: #fff;
+  padding-left: 90px;
+}
+
+.header-wrapper .admin-header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
 
 
 @layer base {

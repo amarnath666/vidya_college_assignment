@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import {
     DropdownMenu,
@@ -9,18 +11,37 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { setLoggedIn } from "@/redux/features/courseSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
+import Link from "next/link";
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const loggedIn = useSelector(state => state.course.loggedIn);
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push("/signin");
+    } 
+
+    const handleLogout = () => {
+        router.push("/");
+        dispatch(setLoggedIn(false));
+        toast("Successfully logged out")
+    };
+
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-4">
                 {/* Logo */}
-                <a className="flex items-center space-x-2 rtl:space-x-reverse">
+                <Link href="/" className="flex items-center space-x-2">
                     <img src="universal-logo.png" className="h-12" alt="Colleg Vidya" />
                     <span className="self-center text-[13px] font-normal whitespace-nowrap dark:text-white">
                         #ChunoApnaSahi
                     </span>
-                </a>
+                </Link>
 
                 {/* Dropdowns, Buttons, and Search Bar */}
                 <div className="flex items-center">
@@ -74,8 +95,8 @@ const Header = () => {
                         <Button variant="outline" className="bg-blue-50 text-blue-600">
                             Suggest in 2 Mins
                         </Button>
-                        <Button variant={"outline"} className="border-blue-600 bg-white text-blue-600 hover:bg-white">
-                            Sign In
+                        <Button onClick={loggedIn ? handleLogout : handleClick} variant={"outline"} className="border-blue-600 bg-white text-blue-600 hover:bg-white">
+                            {loggedIn ? "Logout" : "Sign In"}
                         </Button>
                     </div>
 
@@ -85,7 +106,7 @@ const Header = () => {
                             type="text"
                             className="w-full bg- p-2 pr-10 pl-4 text-sm text-gray-900 border rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
                             placeholder="Search"
-                            style={{ lineHeight: "1.5rem" }} // Added line-height to align text vertically
+                            style={{ lineHeight: "1.5rem" }}
                         />
                         <Search className="absolute inset-y-0 right-3 my-auto text-gray-500" />
                     </div>
