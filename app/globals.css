@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* banner imgs */
 .carousel {
   position: relative;
   width: 100%;
@@ -82,6 +83,65 @@
   to {
       transform: translateX(-100%);
   }
+}
+
+/* features slider */
+.features-carousel {
+  position: relative;
+  width: 90%;
+  margin: 0 auto; 
+  overflow: hidden;
+  z-index: 1;
+  margin-top: 70px;
+}
+
+.features-carousel-inner {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.features-carousel-slide {
+  min-width: 33.33%; 
+  box-sizing: border-box;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.feature-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.features-carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+  border-radius: 50%;
+}
+
+.features-carousel-control.prev {
+  left: 0;
+}
+
+.features-carousel-control.next {
+  right: 0; 
+}
+
+.features-carousel-control:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.features-carousel-control:focus {
+  outline: none;
 }
 
 

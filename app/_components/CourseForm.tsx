@@ -9,10 +9,11 @@ import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from 'react-redux';
 import { setLoggedIn } from "@/redux/features/courseSlice";
 import Stars from "./Stars";
+import { RootState } from "@/redux/store";
 
 const CourseForm = () => {
     const dispatch = useDispatch();
-    const loggedIn = useSelector(state => state.course.loggedIn);
+    const loggedIn = useSelector((state: RootState) => state.course.loggedIn);
     const router = useRouter();
     const [formData, setFormData] = useState({
         fullName: "",
@@ -46,7 +47,7 @@ const CourseForm = () => {
     const handleRadioChange = (e) => {
         setFormData({
             ...formData,
-            cvSubsidy: e.target.value, 
+            cvSubsidy: e.target.value,
         });
     };
 
@@ -55,16 +56,11 @@ const CourseForm = () => {
         console.log("Form submitted. Sending data:", formData);
         try {
             const response = await axios.post('/api/userForm', formData);
-            router.push("/dashboard");
-            dispatch(setLoggedIn(true));
-            toast("Team created succesfully!!!")
-            console.log('User created:', response.data);
+                router.push("/signin");
+                toast("User created succesfully!!!")
+                console.log('User created:', response.data)
         } catch (error) {
             console.error('Error creating user:', error);
-            if (axios.isAxiosError(error)) {
-                console.error('Axios error:', error.response?.data);
-                console.error('Status code:', error.response?.status);
-            }
         }
     };
 

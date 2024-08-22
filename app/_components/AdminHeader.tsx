@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import Link from "next/link"
 import { Search } from "lucide-react";
+import UserDetails from "./UserDetails";
+import { RootState } from "@/redux/store";
 
 const AdminHeader = () => {
     const dispatch = useDispatch();
-    const adminLoggedIn = useSelector(state => state.admin.adminLoggedIn);
+    const adminLoggedIn = useSelector((state: RootState) => state.admin.adminLoggedIn);
     const router = useRouter();
 
     const handleClick = () => {
@@ -25,6 +27,7 @@ const AdminHeader = () => {
     };
 
     return (
+        <div>
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
             <div className="max-w-screen-xl flex items-center justify-between mx-auto px-4 py-4">
                 {/* Logo */}
@@ -54,10 +57,10 @@ const AdminHeader = () => {
                         <Search className="absolute inset-y-0 right-3 my-auto text-gray-500" />
                     </div>
                 </div>
-
             </div>
-
         </nav>
+        <UserDetails />
+        </div>
     );
 };
 

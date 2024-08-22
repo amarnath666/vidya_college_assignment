@@ -22,8 +22,10 @@ const SignIn = () => {
         try {
             const response = await axios.post("/api/signIn", { email, password });
             if (response.status === 200) {
+                const  {user} = response.data;
                 dispatch(setLoggedIn(true));
                 router.push("/dashboard");
+                localStorage.setItem("user", JSON.stringify(user));
                 toast("Sign in successful!");
             }
         } catch (error) {

@@ -5,6 +5,8 @@ import SmallCard from "./_components/SmallCard";
 import SideCard from "./_components/SideCard";
 import { useSelector } from 'react-redux';
 import { RootState } from "@/redux/store";
+import CvCard from "./_components/CvCard";
+import FeaturesCard from "./_components/FeaturesCard";
 
 const Home = () => {
     const { courses, activeCourseId } = useSelector((state: RootState) => state.course);
@@ -27,6 +29,8 @@ const Home = () => {
                     ))}
                 </div>
             </div>
+            <CvCard />
+            <FeaturesCard />
         </>
     );
 };

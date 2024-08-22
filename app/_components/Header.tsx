@@ -16,10 +16,11 @@ import { setLoggedIn } from "@/redux/features/courseSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import Link from "next/link";
+import { RootState } from "@/redux/store";
 
 const Header = () => {
     const dispatch = useDispatch();
-    const loggedIn = useSelector(state => state.course.loggedIn);
+    const loggedIn = useSelector((state: RootState) => state.course.loggedIn);
     const router = useRouter();
 
     const handleClick = () => {
@@ -29,6 +30,7 @@ const Header = () => {
     const handleLogout = () => {
         router.push("/");
         dispatch(setLoggedIn(false));
+        localStorage.removeItem("user");
         toast("Successfully logged out")
     };
 

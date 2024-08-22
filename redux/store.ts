@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import courseReducer from './features/courseSlice';
 import adminReducer from './features/adminSlice';
+import adminUserDetailsReducer from './features/adminUserDetailsSlice';
 
 // store variable is a global variable.
 export const makeStore = () => {
     return configureStore({
         reducer: {
             course: courseReducer,
-            admin: adminReducer
+            admin: adminReducer,
+            adminUserDetails: adminUserDetailsReducer,  
         },
     });
 };

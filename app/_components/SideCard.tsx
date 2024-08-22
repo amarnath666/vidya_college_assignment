@@ -5,13 +5,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { useDispatch, useSelector } from 'react-redux';
 import { setActiveCourse } from "@/redux/features/courseSlice";
+import { RootState } from "@/redux/store";
 
 const SideCard = () => {
     const dispatch = useDispatch();
-    const { courses, activeCourseId } = useSelector(state => state.course);
+    const { courses, activeCourseId } = useSelector((state: RootState) => state.course);
 
     return (
-        <Card className="w-[285px] h-[485px] ml-[100px] pl-4 pr-4 pt-4 overflow-y-auto">
+        <Card className="w-[285px] h-[485px]  pl-4 pr-4 pt-4 overflow-y-auto">
             {courses.map(course => (
                 <div 
                     key={course.id} 

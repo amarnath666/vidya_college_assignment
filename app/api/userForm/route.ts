@@ -42,3 +42,29 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
     }
 }
+
+export async function GET(req: NextRequest) {
+    try {
+        // Fetch users from the database excluding the password field
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                fullName: true,
+                gender: true,
+                email: true,
+                dob: true,
+                state: true,
+                city: true,
+                specialization: true,
+                cvSubsidy: true,
+                courseDetails: true, 
+            },
+        });
+
+        // Return the user data as JSON
+        return NextResponse.json(users, { status: 200 });
+    } catch (error) {
+        console.error("Error fetching users:", error);
+        return NextResponse.json({ error: "An unexpected error occurred" }, { status: 500 });
+    }
+}
